@@ -2,14 +2,17 @@ import React from "react";
 import { createGlobalStyle } from "styled-components";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-import ClassSchedulePage from "../components/ClassSchedulePage";
-import Header from "../components/Header";
+import AddClassSchedule from "../components/AddClassSchedule/index";
+import ClassSchedule from "../components/ClassSchedule/index";
+import Header from "../components/Header/index";
+import ClassTime from "../components/ClassTime";
 
 const GlobalStyles = createGlobalStyle`
   body, html {
     margin: 0;
     height: 100%;
     width: 100%;
+    font-family: "Acme", sans-serif;
   }
 
   a {
@@ -23,6 +26,9 @@ const GlobalStyles = createGlobalStyle`
     --color-light-gray: #e6e6e6;
     --color-blue: #0096FF;
     --color-sky-blue:	#466af0;
+    --size-xsmall: 15px;
+    --size-small: 20px;
+    --size-medium: 25px;
   }
 `;
 
@@ -31,8 +37,11 @@ export default function App() {
     <>
       <GlobalStyles />
       <Router>
+        <Header />
         <Routes>
-          <Route path="/" element={<Header />} />
+          {/* 라우츠 의미 다시 찾아봐 전수진. */}
+          <Route path="/" element={<ClassSchedule />} />
+          <Route path="/schedule" element={<AddClassSchedule />} />
         </Routes>
       </Router>
     </>
