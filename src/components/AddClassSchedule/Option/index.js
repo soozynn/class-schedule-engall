@@ -6,7 +6,9 @@ import { WEEK } from "../../constants";
 import RepeatDay from "./RepeatDay";
 import TimePicker from "./TimePicker";
 
-const OptionContainer = styled.div``;
+const OptionContainer = styled.div`
+  background-color: var(--color-white);
+`;
 
 const StartTimeContainer = styled.div`
   display: flex;

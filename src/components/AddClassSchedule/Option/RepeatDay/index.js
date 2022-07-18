@@ -6,11 +6,12 @@ const RepeatDayWrapper = styled.button`
   margin: 3px;
   padding: 10px 20px;
   border-radius: 4px;
-  border: 1px solid var(--color-black);
+  border: 1px solid var(--color-dark-gray);
   text-align: center;
   background: none;
 
   &:hover {
+    border: 1px solid var(--color-black);
     color: var(--color-black);
     cursor: pointer;
   }

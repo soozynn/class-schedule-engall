@@ -16,11 +16,11 @@ const Text = styled.button`
   }
 `;
 
-export default function Button({ children, handleClick }) {
-  return <Text onClick={handleClick}>{children}</Text>;
+export default function Button({ children, onClick }) {
+  return <Text onClick={onClick}>{children}</Text>;
 }
 
 Button.propTypes = {
   children: PropTypes.string.isRequired,
-  handleClick: PropTypes.func.isRequired,
+  onClick: PropTypes.func.isRequired,
 };

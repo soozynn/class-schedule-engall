@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 import Button from "../Button";
 import PageTitle from "../PageTitle";
-import Option from "../Calendar/Option";
+import Option from "./Option/index";
 
 const TitleWrapper = styled.div`
   display: flex;
@@ -18,9 +18,13 @@ const ButtonWrapper = styled.div`
 `;
 
 export default function AddClassSchedule() {
+  // const [scheduleValue, setScheduleValue] = useState();
   const navigate = useNavigate();
 
-  const handleClickButton = () => {
+  const handleClickSaveButton = () => {
+    console.log("저장");
+    // 버튼 클릭 시 값들 정렬하여 dispatch로 전역에 저장
+
     navigate("/");
   };
 
@@ -31,7 +35,7 @@ export default function AddClassSchedule() {
       </TitleWrapper>
       <Option />
       <ButtonWrapper>
-        <Button handleClick={handleClickButton}>Save</Button>
+        <Button onClick={handleClickSaveButton}>Save</Button>
       </ButtonWrapper>
     </>
   );

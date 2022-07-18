@@ -25,7 +25,7 @@ export default function ClassSchedule() {
     <>
       <TitleContainer>
         <PageTitle>Class schedule</PageTitle>
-        <Button handleClick={handleClickButton}>Add Class Schedule</Button>
+        <Button onClick={handleClickButton}>Add Class Schedule</Button>
       </TitleContainer>
       <Calendar />
     </>
