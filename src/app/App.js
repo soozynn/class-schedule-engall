@@ -5,13 +5,13 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import AddClassSchedule from "../components/AddClassSchedule/index";
 import ClassSchedule from "../components/ClassSchedule/index";
 import Header from "../components/Header/index";
-import ClassTime from "../components/ClassTime";
 
 const GlobalStyles = createGlobalStyle`
   body, html {
     margin: 0;
     height: 100%;
     width: 100%;
+    background-color: #f2f2f2;
     font-family: "Acme", sans-serif;
   }
 

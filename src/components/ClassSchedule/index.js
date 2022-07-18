@@ -4,6 +4,7 @@ import styled from "styled-components";
 
 import PageTitle from "../PageTitle/index";
 import Button from "../Button/index";
+import Calendar from "../Calendar/index";
 
 const TitleContainer = styled.div`
   display: flex;
@@ -26,6 +27,7 @@ export default function ClassSchedule() {
         <PageTitle>Class schedule</PageTitle>
         <Button handleClick={handleClickButton}>Add Class Schedule</Button>
       </TitleContainer>
+      <Calendar />
     </>
   );
 }

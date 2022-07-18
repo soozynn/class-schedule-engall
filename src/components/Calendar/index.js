@@ -3,18 +3,12 @@ import styled from "styled-components";
 import { v4 as uuidv4 } from "uuid";
 
 import Day from "./Day";
+import { WEEK } from "../constants";
 
-const WeekCalendar = styled.div``;
-
-const WEEK = [
-  "Monday",
-  "Tuesday",
-  "Wednesday",
-  "Thursday",
-  "Friday",
-  "Saturday",
-  "Sunday",
-];
+const WeekCalendar = styled.div`
+  display: flex;
+  justify-content: center;
+`;
 
 export default function Calendar() {
   const showWeekCalendar = () => {

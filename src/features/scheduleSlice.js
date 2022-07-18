@@ -20,3 +20,6 @@ const scheduleSlice = createSlice({
     // },
   },
 });
+
+export default scheduleSlice.reducers;
+export const { added, deleted, edit } = scheduleSlice.actions;
