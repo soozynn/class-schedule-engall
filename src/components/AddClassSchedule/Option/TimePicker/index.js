@@ -24,48 +24,82 @@ const DayAndNight = styled.span`
     color: var(--color-dark-gray);
 
     &:hover {
-      border: 1px solid var(--color-black);
       color: var(--color-black);
       cursor: pointer;
+    }
+
+    &.active {
+      background-color: var(--color-dark-gray);
+      color: var(--color-black);
     }
   }
 `;
 
-export default function TimePicker() {
-  const showTheHours = () => {
-    return HOUR.map((hour) => {
-      return (
-        <option value={hour} key={uuidv4()}>
-          {hour}
-        </option>
-      );
-    });
-  };
-
-  const showTheMinutes = () => {
-    return MINUTES.map((minute) => {
-      return (
-        <option value={minute} key={uuidv4()}>
-          {minute}
-        </option>
-      );
-    });
-  };
-
-  const handleChange = (e) => {
+export default function TimePicker({ classSchedule, setClassSchedule }) {
+  const handleChangeHour = (e) => {
     console.log(e.target.value);
-    // save 누를 시 해당 옵션 값들이 다 저장되어야함
+
+    setClassSchedule((prevState) => ({
+      ...prevState,
+      hour: e.target.value,
+    }));
+  };
+
+  const handleChangeMinute = (e) => {
+    console.log(e.target.value);
+
+    setClassSchedule((prevState) => ({
+      ...prevState,
+      minute: e.target.value,
+    }));
+  };
+
+  const handleClickButton = (e) => {
+    console.log(e.target.innerText);
+
+    setClassSchedule((prevState) => ({
+      ...prevState,
+      meridiem: e.target.innerText,
+    }));
   };
 
   return (
-    <form onChange={handleChange}>
-      <SelectTime>{showTheHours()}</SelectTime>
+    <>
+      <SelectTime value={classSchedule.hour} onChange={handleChangeHour}>
+        {HOUR.map((hour) => {
+          return (
+            <option value={hour} name="hour" key={uuidv4()}>
+              {hour}
+            </option>
+          );
+        })}
+      </SelectTime>
       {" : "}
-      <SelectTime>{showTheMinutes()}</SelectTime>
+      <SelectTime value={classSchedule.minute} onChange={handleChangeMinute}>
+        {MINUTES.map((minute) => {
+          return (
+            <option value={minute} name="minute" key={uuidv4()}>
+              {minute}
+            </option>
+          );
+        })}
+      </SelectTime>
       <DayAndNight>
-        <button>Am</button>
-        <button>Pm</button>
+        <button
+          type="button"
+          className={classSchedule.meridiem === "Am" ? "active" : null}
+          onClick={handleClickButton}
+        >
+          Am
+        </button>
+        <button
+          type="button"
+          className={classSchedule.meridiem === "Pm" ? "active" : null}
+          onClick={handleClickButton}
+        >
+          Pm
+        </button>
       </DayAndNight>
-    </form>
+    </>
   );
 }

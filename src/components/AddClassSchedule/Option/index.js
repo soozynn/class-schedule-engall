@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { v4 as uuidv4 } from "uuid";
 
@@ -32,27 +32,48 @@ const RepeatOn = styled.div`
   color: var(--color-dark-gray);
 `;
 
-export default function Option() {
-  const showRepeatDay = () => {
-    return WEEK.map((day) => {
-      return <RepeatDay day={day} key={uuidv4()} />;
-    });
+export default function Option({ classSchedule, setClassSchedule }) {
+  const handleClickRepeatButton = (e) => {
+    if (classSchedule.repeat.includes(e.target.innerText)) {
+      const repeat = classSchedule.repeat.filter(
+        (item) => item !== e.target.innerText
+      );
+
+      setClassSchedule((prevState) => ({
+        ...prevState,
+        repeat,
+      }));
+    } else {
+      setClassSchedule((prevState) => ({
+        ...prevState,
+        repeat: [...prevState.repeat, e.target.innerText],
+      }));
+    }
   };
 
   return (
-    // 여기서 고른 값들을 정렬해서 전역상태에 넣기
     <OptionContainer>
       <StartTimeContainer>
-        <OptionText>
-          Start Time
-          <br />
-          (40분 수업)
-        </OptionText>
-        <TimePicker />
+        <OptionText>Start Time</OptionText>
+        <TimePicker
+          classSchedule={classSchedule}
+          setClassSchedule={setClassSchedule}
+        />
       </StartTimeContainer>
       <RepeatContainer>
         <OptionText>Repeat on</OptionText>
-        <RepeatOn>{showRepeatDay()}</RepeatOn>
+        <RepeatOn>
+          {WEEK.map((day) => {
+            return (
+              <RepeatDay
+                key={uuidv4()}
+                day={day}
+                onClick={handleClickRepeatButton}
+                classSchedule={classSchedule}
+              />
+            );
+          })}
+        </RepeatOn>
       </RepeatContainer>
     </OptionContainer>
   );

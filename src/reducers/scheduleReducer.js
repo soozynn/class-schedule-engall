@@ -10,8 +10,11 @@ const scheduleSlice = createSlice({
   reducers: {
     addSchedule: (state, action) => {
       state.scheduleList += action.payload.data;
+      console.log(state.scheduleList);
     },
-    deleteSchedule: (state, action) => {},
+    deleteSchedule: (state, action) => {
+      // filter로 해당 스케줄 삭제
+    },
     editSchedule: (state, action) => {},
   },
 });

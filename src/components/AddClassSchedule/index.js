@@ -1,10 +1,13 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
+import { addSchedule } from "../../actions/scheduleActions";
 import Button from "../Button";
 import PageTitle from "../PageTitle";
 import Option from "./Option/index";
+import Modal from "../Modal/index";
 
 const TitleWrapper = styled.div`
   display: flex;
@@ -18,13 +21,17 @@ const ButtonWrapper = styled.div`
 `;
 
 export default function AddClassSchedule() {
-  // const [scheduleValue, setScheduleValue] = useState();
+  const [classSchedule, setClassSchedule] = useState({
+    hour: "00",
+    minute: "00",
+    meridiem: "Pm",
+    repeat: [],
+  });
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleClickSaveButton = () => {
-    console.log("저장");
-    // 버튼 클릭 시 값들 정렬하여 dispatch로 전역에 저장
-
+    dispatch(addSchedule(classSchedule));
     navigate("/");
   };
 
@@ -33,9 +40,13 @@ export default function AddClassSchedule() {
       <TitleWrapper>
         <PageTitle>Add class schedule</PageTitle>
       </TitleWrapper>
-      <Option />
+      <Option
+        classSchedule={classSchedule}
+        setClassSchedule={setClassSchedule}
+      />
       <ButtonWrapper>
         <Button onClick={handleClickSaveButton}>Save</Button>
+        {!classSchedule.repeat.length && <Modal />}
       </ButtonWrapper>
     </>
   );

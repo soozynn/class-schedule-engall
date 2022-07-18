@@ -1,22 +1,20 @@
 import { scheduleActions } from "../reducers/scheduleReducer";
 
-function addSchedule() {
-  return async (dispatch) => {
-    let data = // 설정 값 받아오기
-      dispatch(scheduleActions.addSchedule({ data }));
+export function addSchedule(schedule) {
+  return (dispatch) => {
+    console.log(schedule);
+    dispatch(scheduleActions.addSchedule(schedule));
   };
 }
 
-function deleteSchedule() {
-  return async (dispatch) => {
-    let data = // 삭제할 스케줄 값
-      dispatch(scheduleActions.deleteSchedule({ data }));
+export function deleteSchedule(schedule) {
+  return (dispatch) => {
+    dispatch(scheduleActions.deleteSchedule(schedule));
   };
 }
 
-function editSchedule() {
-  return async (dispatch) => {
-    let data = // 수정할 스케줄 값
-      dispatch(scheduleActions.editSchedule({ data }));
+export function editSchedule(schedule) {
+  return (dispatch) => {
+    dispatch(scheduleActions.editSchedule(schedule));
   };
 }
