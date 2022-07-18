@@ -7,6 +7,7 @@ const XButtonWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  position: absolute;
   background-color: var(--color-dark-gray);
   border-radius: 50%;
 

@@ -1,9 +1,9 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 import PageTitle from "../PageTitle/index";
 import Button from "../Button/index";
-import ClassTime from "../ClassTime";
 
 const TitleContainer = styled.div`
   display: flex;
@@ -14,13 +14,18 @@ const TitleContainer = styled.div`
 `;
 
 export default function ClassSchedule() {
+  const navigate = useNavigate();
+
+  const handleClickButton = () => {
+    navigate("/schedule");
+  };
+
   return (
     <>
       <TitleContainer>
         <PageTitle>Class schedule</PageTitle>
-        <Button>Add Class Schedule</Button>
+        <Button handleClick={handleClickButton}>Add Class Schedule</Button>
       </TitleContainer>
-      <ClassTime />
     </>
   );
 }

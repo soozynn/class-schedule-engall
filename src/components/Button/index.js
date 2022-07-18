@@ -3,7 +3,6 @@ import styled from "styled-components";
 import PropTypes from "prop-types";
 
 const Text = styled.button`
-  // 크기 props 마다 다르게 주기
   padding: 20px 30px;
   border-radius: 4px;
   border: none;
@@ -17,10 +16,11 @@ const Text = styled.button`
   }
 `;
 
-export default function Button({ children }) {
-  return <Text>{children}</Text>;
+export default function Button({ children, handleClick }) {
+  return <Text onClick={handleClick}>{children}</Text>;
 }
 
 Button.propTypes = {
   children: PropTypes.string.isRequired,
+  handleClick: PropTypes.func.isRequired,
 };
