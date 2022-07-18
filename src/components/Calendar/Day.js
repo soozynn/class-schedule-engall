@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 import { v4 as uuidv4 } from "uuid";
+import { useSelector } from "react-redux";
 
 import ClassTime from "../ClassTime/index";
 
@@ -23,7 +24,7 @@ const ClassWrapper = styled.div`
 `;
 
 export default function Day({ day }) {
-  // const schedule = useSelector((state) => state.schedule);
+  const schedule = useSelector((state) => state.schedule);
 
   return (
     <DayContainer>

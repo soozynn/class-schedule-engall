@@ -39,7 +39,6 @@ export default function App() {
       <Router>
         <Header />
         <Routes>
-          {/* 라우츠 의미 다시 찾아봐 전수진. */}
           <Route path="/" element={<ClassSchedule />} />
           <Route path="/schedule" element={<AddClassSchedule />} />
         </Routes>
