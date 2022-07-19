@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import PropTypes from "prop-types";
 import { v4 as uuidv4 } from "uuid";
 
 import { AM_HOUR } from "../../../constants";
@@ -36,7 +37,9 @@ const DayAndNight = styled.span`
   }
 `;
 
-export default function TimePicker({ classSchedule, setClassSchedule }) {
+export default function TimePicker(props) {
+  const { classSchedule, setClassSchedule } = props;
+
   const handleChangeHour = (e) => {
     setClassSchedule((prevState) => ({
       ...prevState,
@@ -109,3 +112,14 @@ export default function TimePicker({ classSchedule, setClassSchedule }) {
     </>
   );
 }
+
+TimePicker.propTypes = {
+  classSchedule: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    hour: PropTypes.string.isRequired,
+    minute: PropTypes.string.isRequired,
+    meridiem: PropTypes.string.isRequired,
+    repeat: PropTypes.arrayOf(PropTypes.string).isRequired,
+  }).isRequired,
+  setClassSchedule: PropTypes.func.isRequired,
+};

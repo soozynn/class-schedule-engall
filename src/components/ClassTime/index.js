@@ -37,10 +37,12 @@ const EndTime = styled.div`
 `;
 
 export default function ClassTime(props) {
-  const [showsModal, setShowsModal] = useState(false);
-  const dispatch = useDispatch();
   const { color, schedule } = props;
   const { hour, minute, meridiem, id } = schedule;
+
+  const [showsModal, setShowsModal] = useState(false);
+  const [showsEditModal, setIsShowsEditModal] = useState(false);
+  const dispatch = useDispatch();
 
   const extractEndTime = () => {
     let endHour = Number(hour);
@@ -68,7 +70,11 @@ export default function ClassTime(props) {
     return `${endHour}:${endMinute} ${endMeridiem}`;
   };
 
-  const deleteTheSchedule = () => {
+  const handleClickClass = () => {
+    setIsShowsEditModal(!showsEditModal);
+  };
+
+  const deleteSchedule = () => {
     dispatch(deleteAllSchedule(id));
     setShowsModal(!showsModal);
   };
@@ -78,7 +84,7 @@ export default function ClassTime(props) {
   };
 
   return (
-    <ClassTimeContainer color={color}>
+    <ClassTimeContainer color={color} onClick={handleClickClass}>
       <StartTime>
         {hour}:{minute} {meridiem}
         {" -"}
@@ -90,7 +96,7 @@ export default function ClassTime(props) {
 
       {showsModal && (
         <Modal
-          handleClickOk={deleteTheSchedule}
+          handleClickOk={deleteSchedule}
           handleClickCancel={handleClickDeleteButton}
           showsModal={showsModal}
         >

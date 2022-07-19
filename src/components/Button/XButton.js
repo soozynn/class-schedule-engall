@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import PropTypes from "prop-types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 
@@ -33,3 +34,7 @@ export default function XButton({ onClick }) {
     </XButtonWrapper>
   );
 }
+
+XButton.propTypes = {
+  onClick: PropTypes.func.isRequired,
+};

@@ -16,7 +16,9 @@ const Text = styled.button`
   }
 `;
 
-export default function Button({ children, onClick }) {
+export default function Button(props) {
+  const { children, onClick } = props;
+
   return <Text onClick={onClick}>{children}</Text>;
 }
 

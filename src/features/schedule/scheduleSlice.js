@@ -18,13 +18,15 @@ const scheduleSlice = createSlice({
         (schedule) => schedule.id !== scheduleId
       );
     },
-    editSchedule: (state, action) => {
-      // const { id, editSchedule } = action.payload;
-      // const schedule = state.find((schedule) => schedule.id === id);
+    deleteOnlySchedule: (state, action) => {
+      // const scheduleId = action.payload;
+      // state.schedule = state.schedule.filter(
+      //   (schedule) => schedule.id !== scheduleId
+      // );
     },
   },
 });
 
-export const { addSchedule, deleteAllSchedule, editSchedule } =
+export const { addSchedule, deleteAllSchedule, deleteOnlySchedule } =
   scheduleSlice.actions;
 export default scheduleSlice.reducer;

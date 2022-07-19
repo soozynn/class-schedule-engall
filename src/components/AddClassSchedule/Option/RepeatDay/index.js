@@ -21,7 +21,9 @@ const RepeatDayButton = styled.button`
   }
 `;
 
-export default function RepeatDay({ day, onClick, classSchedule }) {
+export default function RepeatDay(props) {
+  const { day, onClick, classSchedule } = props;
+
   const findRepeatDay = () => {
     return classSchedule.repeat.includes(day);
   };
@@ -39,4 +41,11 @@ export default function RepeatDay({ day, onClick, classSchedule }) {
 RepeatDay.propTypes = {
   day: PropTypes.string.isRequired,
   onClick: PropTypes.func.isRequired,
+  classSchedule: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    hour: PropTypes.string.isRequired,
+    minute: PropTypes.string.isRequired,
+    meridiem: PropTypes.string.isRequired,
+    repeat: PropTypes.arrayOf(PropTypes.string).isRequired,
+  }).isRequired,
 };

@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
+import PropTypes from "prop-types";
 import { v4 as uuidv4 } from "uuid";
 
 import { WEEK } from "../../constants";
@@ -32,7 +33,9 @@ const RepeatOn = styled.div`
   color: var(--color-dark-gray);
 `;
 
-export default function Option({ classSchedule, setClassSchedule }) {
+export default function Option(props) {
+  const { classSchedule, setClassSchedule } = props;
+
   const handleClickRepeatButton = (e) => {
     if (classSchedule.repeat.includes(e.target.innerText)) {
       const repeat = classSchedule.repeat.filter(
@@ -78,3 +81,14 @@ export default function Option({ classSchedule, setClassSchedule }) {
     </OptionContainer>
   );
 }
+
+Option.propTypes = {
+  classSchedule: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    hour: PropTypes.string.isRequired,
+    minute: PropTypes.string.isRequired,
+    meridiem: PropTypes.string.isRequired,
+    repeat: PropTypes.arrayOf(PropTypes.string).isRequired,
+  }).isRequired,
+  setClassSchedule: PropTypes.func.isRequired,
+};
