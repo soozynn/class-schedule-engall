@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 import { v4 as uuidv4 } from "uuid";
@@ -47,6 +47,9 @@ const ClassWrapper = styled.div`
 
 export default function Day({ day }) {
   const scheduleList = useSelector((state) => state.schedule);
+  // const sortingSchedule = (a, b) => {
+  //   a.meridiem.localeCompare(b.meridiem);
+  // };
 
   return (
     <DayContainer>
@@ -55,11 +58,13 @@ export default function Day({ day }) {
       </DayWrapper>
 
       <ClassWrapper>
-        {/* 시간 대 순차적으로 렌더링 필요 */}
-        {/* // Am 우선 정렬 후 Pm 순차적으로 */}
         {scheduleList
           .filter((schedule) => schedule.repeat.includes(day))
-          .sort((a, b) => a > b)
+          .sort((a, b) =>
+            // a.hour - b.hour &&
+            // a.minute > b.minute &&
+            a.meridiem.localeCompare(b.meridiem)
+          )
           .map((filteredSchedule) => {
             return <ClassTime key={uuidv4()} schedule={filteredSchedule} />;
           })}

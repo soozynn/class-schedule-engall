@@ -25,7 +25,7 @@ export default function AddClassSchedule() {
   const [showsModal, setShowsModal] = useState(false);
   const [classSchedule, setClassSchedule] = useState({
     id: uuidv4(),
-    hour: "00",
+    hour: "01",
     minute: "00",
     meridiem: "Pm",
     repeat: [],

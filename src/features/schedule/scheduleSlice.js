@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, current } from "@reduxjs/toolkit";
 
 const scheduleSlice = createSlice({
   name: "schedule",
@@ -10,7 +10,7 @@ const scheduleSlice = createSlice({
     deleteAllSchedule: (state, action) => {
       const scheduleId = action.payload;
 
-      state = state.filter((schedule) => schedule.id !== scheduleId);
+      return state.filter((schedule) => schedule.id !== scheduleId);
     },
     editSchedule: (state, action) => {
       // const { id, editSchedule } = action.payload;
