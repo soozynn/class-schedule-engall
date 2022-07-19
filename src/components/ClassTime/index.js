@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 
 import { deleteSchedule } from "../../features/schedule/scheduleSlice";
 import XButton from "../Button/XButton";
+import Modal from "../Modal";
 
 const ClassTimeContainer = styled.div`
   display: flex;
@@ -34,6 +35,7 @@ const EndTime = styled.div`
 `;
 
 export default function ClassTime({ schedule }) {
+  const [showsModal, setShowsModal] = useState(false);
   const { hour, minute, meridiem } = schedule;
 
   const extractEndTime = () => {
@@ -61,9 +63,13 @@ export default function ClassTime({ schedule }) {
     return `${endHour}:${endMinute} ${endMeridiem}`;
   };
 
-  const handleClickDeleteButton = () => {
+  const handleCloseModal = () => {
     // id 이용해서 해당 class 삭제해주기
     // deleteSchedule(id);
+  };
+
+  const handleClickDeleteButton = () => {
+    setShowsModal(!showsModal);
   };
 
   return (
@@ -76,6 +82,10 @@ export default function ClassTime({ schedule }) {
       <EndTime>{extractEndTime()}</EndTime>
 
       <XButton onClick={handleClickDeleteButton} />
+
+      {showsModal && (
+        <Modal onClick={handleCloseModal}>정말 삭제하시겠습니까?</Modal>
+      )}
     </ClassTimeContainer>
   );
 }

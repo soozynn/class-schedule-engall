@@ -14,6 +14,7 @@ const XButtonWrapper = styled.div`
     padding: 2px 4px;
     border-radius: 45%;
     color: var(--color-light-gray);
+    z-index: 10;
   }
 
   &:hover {
@@ -25,9 +26,9 @@ const XButtonWrapper = styled.div`
   }
 `;
 
-export default function XButton() {
+export default function XButton({ onClick }) {
   return (
-    <XButtonWrapper>
+    <XButtonWrapper onClick={onClick}>
       <FontAwesomeIcon icon={faXmark} className="font-xmark" />
     </XButtonWrapper>
   );
