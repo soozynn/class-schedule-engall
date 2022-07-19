@@ -46,18 +46,22 @@ const ClassWrapper = styled.div`
 `;
 
 export default function Day({ day }) {
-  const schedule = useSelector((state) => state.schedule);
+  const scheduleList = useSelector((state) => state.schedule);
 
+  console.log(scheduleList);
   return (
     <DayContainer>
       <DayWrapper>
         <DayText>{day}</DayText>
       </DayWrapper>
+
       <ClassWrapper>
-        {/* {schedule[day] &&
-          schedule[day].map((time) => {
-            return <ClassTime key={uuidv4()} class={time} />;
-          })} */}
+        {/* 시간 대 순차적으로 렌더링 필요 */}
+        {scheduleList
+          .filter((schedule) => schedule.repeat.includes(day))
+          .map((filteredSchedule) => {
+            return <ClassTime key={uuidv4()} schedule={filteredSchedule} />;
+          })}
       </ClassWrapper>
     </DayContainer>
   );

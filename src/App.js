@@ -2,9 +2,9 @@ import React from "react";
 import { createGlobalStyle } from "styled-components";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-import AddClassSchedule from "../components/AddClassSchedule/index";
-import ClassSchedule from "../components/ClassSchedule/index";
-import Header from "../components/Header/index";
+import AddClassSchedule from "./components/AddClassSchedule/index";
+import ClassSchedule from "./components/ClassSchedule/index";
+import Header from "./components/Header/index";
 
 const GlobalStyles = createGlobalStyle`
   body, html {
@@ -38,6 +38,7 @@ export default function App() {
       <GlobalStyles />
       <Router>
         <Header />
+
         <Routes>
           <Route path="/" element={<ClassSchedule />} />
           <Route path="/schedule" element={<AddClassSchedule />} />

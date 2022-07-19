@@ -27,6 +27,7 @@ export default function ClassSchedule() {
         <PageTitle>Class schedule</PageTitle>
         <Button onClick={handleClickButton}>Add Class Schedule</Button>
       </TitleContainer>
+
       <Calendar />
     </>
   );

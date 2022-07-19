@@ -2,7 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import { v4 as uuidv4 } from "uuid";
 
-import { HOUR } from "../../../constants";
+import { AM_HOUR } from "../../../constants";
+import { PM_HOUR } from "../../../constants";
 import { MINUTES } from "../../../constants";
 
 const SelectTime = styled.select`
@@ -37,8 +38,6 @@ const DayAndNight = styled.span`
 
 export default function TimePicker({ classSchedule, setClassSchedule }) {
   const handleChangeHour = (e) => {
-    console.log(e.target.value);
-
     setClassSchedule((prevState) => ({
       ...prevState,
       hour: e.target.value,
@@ -46,8 +45,6 @@ export default function TimePicker({ classSchedule, setClassSchedule }) {
   };
 
   const handleChangeMinute = (e) => {
-    console.log(e.target.value);
-
     setClassSchedule((prevState) => ({
       ...prevState,
       minute: e.target.value,
@@ -55,8 +52,6 @@ export default function TimePicker({ classSchedule, setClassSchedule }) {
   };
 
   const handleClickButton = (e) => {
-    console.log(e.target.innerText);
-
     setClassSchedule((prevState) => ({
       ...prevState,
       meridiem: e.target.innerText,
@@ -66,15 +61,25 @@ export default function TimePicker({ classSchedule, setClassSchedule }) {
   return (
     <>
       <SelectTime value={classSchedule.hour} onChange={handleChangeHour}>
-        {HOUR.map((hour) => {
-          return (
-            <option value={hour} name="hour" key={uuidv4()}>
-              {hour}
-            </option>
-          );
-        })}
+        {classSchedule.meridiem === "Am"
+          ? AM_HOUR.map((hour) => {
+              return (
+                <option value={hour} name="hour" key={uuidv4()}>
+                  {hour}
+                </option>
+              );
+            })
+          : PM_HOUR.map((hour) => {
+              return (
+                <option value={hour} name="hour" key={uuidv4()}>
+                  {hour}
+                </option>
+              );
+            })}
       </SelectTime>
+
       {" : "}
+
       <SelectTime value={classSchedule.minute} onChange={handleChangeMinute}>
         {MINUTES.map((minute) => {
           return (
@@ -84,6 +89,7 @@ export default function TimePicker({ classSchedule, setClassSchedule }) {
           );
         })}
       </SelectTime>
+
       <DayAndNight>
         <button
           type="button"

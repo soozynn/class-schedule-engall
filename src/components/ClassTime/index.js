@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 
+import { deleteSchedule } from "../../features/schedule/scheduleSlice";
 import XButton from "../Button/XButton";
 
 const ClassTimeContainer = styled.div`
@@ -29,22 +30,53 @@ const EndTime = styled.div`
   font-size: var(--size-xsmall);
 `;
 
-export default function ClassTime(props) {
-  const { startTime, endTime } = props;
+export default function ClassTime({ schedule }) {
+  const { hour, minute, meridiem } = schedule;
+
+  const extractEndTime = () => {
+    let endHour = Number(hour);
+    let endMinute = minute;
+    let endMeridiem = meridiem;
+
+    if (minute + 40 > 60) {
+      endMinute = 60 - minute;
+      endHour += 1;
+    } else {
+      endMinute = Number(minute + 40);
+    }
+
+    if (Number(hour) === 11 && minute >= 20) {
+      if (meridiem === "Am") {
+        endMeridiem = "Pm";
+      } else {
+        endMeridiem = "Am";
+      }
+    }
+
+    endHour = endHour === 0 ? "00" : endHour;
+
+    return `${endHour}:${endMinute} ${endMeridiem}`;
+  };
+
+  const handleClickDeleteButton = () => {
+    // id 이용해서 해당 class 삭제해주기
+    // deleteSchedule(id);
+  };
 
   return (
     <ClassTimeContainer>
       <StartTime>
-        {startTime}
+        {hour}:{minute} {meridiem}
         {" -"}
       </StartTime>
-      <EndTime>{endTime}</EndTime>
-      <XButton />
+
+      <EndTime>{extractEndTime()}</EndTime>
+
+      <XButton onClick={handleClickDeleteButton} />
     </ClassTimeContainer>
   );
 }
 
 ClassTime.propTypes = {
-  startTime: PropTypes.string.isRequired,
-  endTime: PropTypes.string.isRequired,
+  schedule: PropTypes.string.isRequired,
 };

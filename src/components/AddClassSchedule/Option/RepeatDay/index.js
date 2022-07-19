@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 
 const RepeatDayButton = styled.button`
   margin: 3px;
   padding: 10px 20px;
+  background-color: var(--color-white);
   border-radius: 4px;
   border: 1px solid var(--color-dark-gray);
   text-align: center;

@@ -7,19 +7,24 @@ const XButtonWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  position: absolute;
-  background-color: var(--color-dark-gray);
-  border-radius: 50%;
+  position: relative;
 
   .font-xmark {
+    // 고정된 버튼 위치 만들기
+    position: absolute;
+    bottom: 60px;
+    left: 65px;
+    background-color: var(--color-dark-gray);
+    border-radius: 50%;
     color: var(--color-light-gray);
+    z-index: 1;
   }
 
   &:hover {
     cursor: pointer;
 
     .font-xmark {
-      color: var(--color-black);
+      background-color: var(--color-black);
     }
   }
 `;

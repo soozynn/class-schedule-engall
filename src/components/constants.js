@@ -8,8 +8,22 @@ export const WEEK = [
   "Sunday",
 ];
 
-export const HOUR = [
+export const AM_HOUR = [
   "00",
+  "01",
+  "02",
+  "03",
+  "04",
+  "05",
+  "06",
+  "07",
+  "08",
+  "09",
+  "10",
+  "11",
+];
+
+export const PM_HOUR = [
   "01",
   "02",
   "03",
