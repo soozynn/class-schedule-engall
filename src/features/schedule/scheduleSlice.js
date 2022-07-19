@@ -1,14 +1,14 @@
-import { createSlice, current } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   schedule: [],
 };
+
 const scheduleSlice = createSlice({
   name: "schedule",
   initialState,
   reducers: {
     addSchedule: (state, action) => {
-      console.log(current(state));
       state.schedule.push(action.payload);
     },
     deleteAllSchedule: (state, action) => {

@@ -4,12 +4,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 
 const XButtonWrapper = styled.div`
-  position: fixed;
+  position: relative;
 
   .font-xmark {
     position: absolute;
-    top: -2px;
-    left: 75px;
+    top: -35px;
+    left: 100px;
     background-color: var(--color-dark-gray);
     padding: 2px 4px;
     border-radius: 45%;

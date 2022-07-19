@@ -46,7 +46,7 @@ export default function ClassTime({ schedule }) {
     let endMinute = minute;
     let endMeridiem = meridiem;
 
-    if (minute + 40 > 60) {
+    if (Number(minute) + 40 > 60) {
       endMinute = 40 - (60 - minute);
       endHour += 1;
     } else {
