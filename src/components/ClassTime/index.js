@@ -2,9 +2,10 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 
-import { deleteSchedule } from "../../features/schedule/scheduleSlice";
+import { deleteAllSchedule } from "../../features/schedule/scheduleSlice";
 import XButton from "../Button/XButton";
 import Modal from "../Modal";
+import { useDispatch } from "react-redux";
 
 const ClassTimeContainer = styled.div`
   display: flex;
@@ -36,7 +37,9 @@ const EndTime = styled.div`
 
 export default function ClassTime({ schedule }) {
   const [showsModal, setShowsModal] = useState(false);
-  const { hour, minute, meridiem } = schedule;
+  const dispatch = useDispatch();
+
+  const { hour, minute, meridiem, id } = schedule;
 
   const extractEndTime = () => {
     let endHour = Number(hour);
@@ -64,9 +67,8 @@ export default function ClassTime({ schedule }) {
   };
 
   const deleteTheSchedule = () => {
-    // id 이용해서 해당 class 삭제해주기
-    // deleteSchedule(id);
-    console.log("삭제클릭");
+    dispatch(deleteAllSchedule(id));
+    setShowsModal(!showsModal);
   };
 
   const handleClickDeleteButton = () => {
@@ -102,7 +104,7 @@ ClassTime.propTypes = {
     hour: PropTypes.string.isRequired,
     minute: PropTypes.string.isRequired,
     meridiem: PropTypes.string.isRequired,
-    repeat: PropTypes.arrayOf(PropTypes.string),
-    id: PropTypes.string,
+    repeat: PropTypes.arrayOf(PropTypes.string).isRequired,
+    id: PropTypes.string.isRequired,
   }),
 };

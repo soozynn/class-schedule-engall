@@ -5,28 +5,20 @@ const scheduleSlice = createSlice({
   initialState: [],
   reducers: {
     addSchedule: (state, action) => {
-      console.log(action.payload);
       state.push(action.payload);
-      console.log(state);
     },
-    deleteSchedule: (state, action) => {
-      // const scheduleList = state.filter(
-      //   (schedule) => schedule.id !== action.payload.id
-      // );
-      // return { ...state, scheduleList: [...scheduleList] };
+    deleteAllSchedule: (state, action) => {
+      const scheduleId = action.payload;
+
+      state = state.filter((schedule) => schedule.id !== scheduleId);
     },
     editSchedule: (state, action) => {
-      // const scheduleList = state.scheduleList.map((schedule) => {
-      //   if (schedule.id === action.payload.id) {
-      //     schedule = action.payload;
-      //   }
-      //   return schedule;
-      // });
-      // return { ...state, scheduleList: [...scheduleList] };
+      // const { id, editSchedule } = action.payload;
+      // const schedule = state.find((schedule) => schedule.id === id);
     },
   },
 });
 
-export const { addSchedule, deleteSchedule, editSchedule } =
+export const { addSchedule, deleteAllSchedule, editSchedule } =
   scheduleSlice.actions;
 export default scheduleSlice.reducer;

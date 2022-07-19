@@ -43,7 +43,7 @@ export default function AddClassSchedule() {
     }
 
     /* 동일한 시간대 & 겹치는 시간대 스케줄 존재할 시 중복 스케줄 있다는 알림 모달 띄우기 */
-    // if ()
+
     dispatch(addSchedule(classSchedule));
     navigate("/");
   };
