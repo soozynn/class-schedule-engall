@@ -80,7 +80,7 @@ export default function Day({ day }) {
               if (!daySchedule[filteredSchedule.id]) {
                 daySchedule[filteredSchedule.id] = randomColor();
               }
-              console.log(daySchedule[filteredSchedule.id]);
+
               return (
                 <ClassTime
                   key={uuidv4()}
