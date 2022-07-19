@@ -19,8 +19,8 @@ const XButtonWrapper = styled.div`
 
   &:hover {
     .font-xmark {
-      border: 1px solid var(--color-black);
-      color: var(--color-black);
+      border: 1px solid var(--color-red);
+      color: var(--color-red);
       cursor: pointer;
     }
   }

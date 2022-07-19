@@ -36,10 +36,10 @@ const EndTime = styled.div`
   font-size: var(--size-xsmall);
 `;
 
-export default function ClassTime({ schedule }) {
+export default function ClassTime(props) {
   const [showsModal, setShowsModal] = useState(false);
   const dispatch = useDispatch();
-
+  const { color, schedule } = props;
   const { hour, minute, meridiem, id } = schedule;
 
   const extractEndTime = () => {
@@ -78,7 +78,7 @@ export default function ClassTime({ schedule }) {
   };
 
   return (
-    <ClassTimeContainer>
+    <ClassTimeContainer color={color}>
       <StartTime>
         {hour}:{minute} {meridiem}
         {" -"}
@@ -108,5 +108,6 @@ ClassTime.propTypes = {
     meridiem: PropTypes.string.isRequired,
     repeat: PropTypes.arrayOf(PropTypes.string).isRequired,
     id: PropTypes.string.isRequired,
+    color: PropTypes.string,
   }),
 };
