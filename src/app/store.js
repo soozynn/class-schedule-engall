@@ -1,7 +1,8 @@
-import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
+import { configureStore } from "@reduxjs/toolkit";
 import scheduleReducer from "../features/schedule/scheduleSlice";
 import {
   persistReducer,
+  persistStore,
   FLUSH,
   REHYDRATE,
   PAUSE,
@@ -13,13 +14,12 @@ import storage from "redux-persist/lib/storage";
 
 const persistConfig = {
   key: "root",
-  version: 1,
   storage,
 };
 
 const persistedReducer = persistReducer(persistConfig, scheduleReducer);
 
-export default configureStore({
+export const store = configureStore({
   reducer: {
     schedule: persistedReducer,
   },
@@ -30,3 +30,5 @@ export default configureStore({
       },
     }),
 });
+
+export const persistor = persistStore(store);

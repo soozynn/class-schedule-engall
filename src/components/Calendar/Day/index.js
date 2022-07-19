@@ -46,7 +46,8 @@ const ClassWrapper = styled.div`
 `;
 
 export default function Day({ day }) {
-  const scheduleList = useSelector((state) => state.schedule);
+  const scheduleList = useSelector((state) => state.schedule.schedule);
+
   // const sortingSchedule = (a, b) => {
   //   a.meridiem.localeCompare(b.meridiem);
   // };
@@ -58,16 +59,17 @@ export default function Day({ day }) {
       </DayWrapper>
 
       <ClassWrapper>
-        {scheduleList
-          .filter((schedule) => schedule.repeat.includes(day))
-          .sort((a, b) =>
-            // a.hour - b.hour &&
-            // a.minute > b.minute &&
-            a.meridiem.localeCompare(b.meridiem)
-          )
-          .map((filteredSchedule) => {
-            return <ClassTime key={uuidv4()} schedule={filteredSchedule} />;
-          })}
+        {scheduleList &&
+          scheduleList
+            .filter((schedule) => schedule.repeat.includes(day))
+            .sort((a, b) =>
+              // a.hour - b.hour &&
+              // a.minute > b.minute &&
+              a.meridiem.localeCompare(b.meridiem)
+            )
+            .map((filteredSchedule) => {
+              return <ClassTime key={uuidv4()} schedule={filteredSchedule} />;
+            })}
       </ClassWrapper>
     </DayContainer>
   );

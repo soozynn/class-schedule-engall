@@ -44,21 +44,21 @@ export default function AddClassSchedule() {
     }
 
     // 동일한 요일에 동일한 시간대 스케줄 있는지 체크
-    const sameSchedule = scheduleList.filter(
-      (schedule) =>
-        schedule.hour === classSchedule.hour &&
-        schedule.minute === classSchedule.minute &&
-        schedule.meridiem === classSchedule.meridiem
-    );
+    // const sameSchedule = scheduleList.filter(
+    //   (schedule) =>
+    //     schedule.hour === classSchedule.hour &&
+    //     schedule.minute === classSchedule.minute &&
+    //     schedule.meridiem === classSchedule.meridiem
+    // );
 
-    console.log(sameSchedule);
-    if (sameSchedule.repeat) {
-      return (
-        <Modal handleClickOk={handleCloseModal}>
-          {`이번 주 ${sameSchedule.repeat}에 동일한 시간대 스케줄이 존재합니다. 해당 요일은 제외해주세요.`}
-        </Modal>
-      );
-    }
+    // console.log(sameSchedule);
+    // if (sameSchedule.repeat) {
+    //   return (
+    //     <Modal handleClickOk={handleCloseModal}>
+    //       {`이번 주 ${sameSchedule.repeat}에 동일한 시간대 스케줄이 존재합니다. 해당 요일은 제외해주세요.`}
+    //     </Modal>
+    //   );
+    // }
 
     dispatch(addSchedule(classSchedule));
     navigate("/");
