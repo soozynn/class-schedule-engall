@@ -30,9 +30,9 @@ export default function AddClassSchedule() {
     meridiem: "Pm",
     repeat: [],
   });
+  const scheduleList = useSelector((state) => state.schedule.schedule);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  // const scheduleList = useSelector((state) => state.schedule);
 
   const handleCloseModal = () => {
     setShowsModal(!showsModal);
@@ -43,23 +43,40 @@ export default function AddClassSchedule() {
       return setShowsModal(!showsModal);
     }
 
-    // 동일한 요일에 동일한 시간대 스케줄 있는지 체크
-    // const sameSchedule = scheduleList.filter(
-    //   (schedule) =>
-    //     schedule.hour === classSchedule.hour &&
-    //     schedule.minute === classSchedule.minute &&
-    //     schedule.meridiem === classSchedule.meridiem
+    const sameTimeList = scheduleList.filter(
+      (schedule) =>
+        schedule.hour === classSchedule.hour &&
+        schedule.minute === classSchedule.minute &&
+        schedule.meridiem === classSchedule.meridiem
+    );
+
+    const sameDayList = sameTimeList.map((schedule) => schedule.repeat);
+    console.log(sameDayList);
+
+    // const intersection = sameTimeList.filter((element) =>
+    //   classSchedule.repeat.includes(element)
     // );
 
-    // console.log(sameSchedule);
-    // if (sameSchedule.repeat) {
-    //   return (
-    //     <Modal handleClickOk={handleCloseModal}>
-    //       {`이번 주 ${sameSchedule.repeat}에 동일한 시간대 스케줄이 존재합니다. 해당 요일은 제외해주세요.`}
-    //     </Modal>
-    //   );
-    // }
+    // const sameScheduleObj = {};
 
+    // for (let i = 0; i < sameTimeList.length; i++) {
+    //   console.log(i, sameScheduleObj);
+    //   if (!sameScheduleObj[sameTimeList[i]]) {
+    //     const schedule = sameTimeList[i].repeat;
+    //     sameScheduleObj[schedule] = i;
+    //   }
+    // }
+    // console.log(sameScheduleObj);
+    // for (let j = 0; j < classSchedule.repeat.length; j++) {
+    //   if (sameScheduleObj[classSchedule.repeat[j]]) {
+    //     console.log("중복발생");
+    //     return (
+    //       <Modal handleClickOk={handleCloseModal}>
+    //         {`이번 주 ${sameTimeList[j]}에 동일한 시간대 스케줄이 존재합니다. 해당 요일은 제외해주세요.`}
+    //       </Modal>
+    //     );
+    //   }
+    // }
     dispatch(addSchedule(classSchedule));
     navigate("/");
   };

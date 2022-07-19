@@ -14,7 +14,9 @@ const scheduleSlice = createSlice({
     deleteAllSchedule: (state, action) => {
       const scheduleId = action.payload;
 
-      return state.schedule.filter((schedule) => schedule.id !== scheduleId);
+      state.schedule = state.schedule.filter(
+        (schedule) => schedule.id !== scheduleId
+      );
     },
     editSchedule: (state, action) => {
       // const { id, editSchedule } = action.payload;
