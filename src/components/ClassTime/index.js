@@ -8,7 +8,9 @@ import XButton from "../Button/XButton";
 const ClassTimeContainer = styled.div`
   display: flex;
   flex-direction: column;
-  margin: 5px;
+  justify-content: start;
+  align-items: flex-start;
+  margin: 15px;
   padding: 10px 20px;
   background-color: var(--color-light-gray);
   border-radius: 4px;
@@ -83,7 +85,7 @@ ClassTime.propTypes = {
     hour: PropTypes.string.isRequired,
     minute: PropTypes.string.isRequired,
     meridiem: PropTypes.string.isRequired,
-    repeat: PropTypes.arrayOf(PropTypes.object),
+    repeat: PropTypes.arrayOf(PropTypes.string),
     id: PropTypes.string,
   }),
 };

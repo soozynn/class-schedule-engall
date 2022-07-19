@@ -4,27 +4,23 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 
 const XButtonWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
+  position: fixed;
 
   .font-xmark {
-    // 고정된 버튼 위치 만들기
     position: absolute;
-    bottom: 60px;
-    left: 65px;
+    top: -2px;
+    left: 75px;
     background-color: var(--color-dark-gray);
-    border-radius: 50%;
+    padding: 2px 4px;
+    border-radius: 45%;
     color: var(--color-light-gray);
-    z-index: 1;
   }
 
   &:hover {
-    cursor: pointer;
-
     .font-xmark {
-      background-color: var(--color-black);
+      border: 1px solid var(--color-black);
+      color: var(--color-black);
+      cursor: pointer;
     }
   }
 `;
