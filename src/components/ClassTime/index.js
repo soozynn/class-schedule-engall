@@ -63,9 +63,10 @@ export default function ClassTime({ schedule }) {
     return `${endHour}:${endMinute} ${endMeridiem}`;
   };
 
-  const handleCloseModal = () => {
+  const deleteTheSchedule = () => {
     // id 이용해서 해당 class 삭제해주기
     // deleteSchedule(id);
+    console.log("삭제클릭");
   };
 
   const handleClickDeleteButton = () => {
@@ -84,7 +85,13 @@ export default function ClassTime({ schedule }) {
       <XButton onClick={handleClickDeleteButton} />
 
       {showsModal && (
-        <Modal onClick={handleCloseModal}>정말 삭제하시겠습니까?</Modal>
+        <Modal
+          handleClickOk={deleteTheSchedule}
+          handleClickCancel={handleClickDeleteButton}
+          showsModal={showsModal}
+        >
+          해당 스케줄을 정말 삭제하시겠습니까?
+        </Modal>
       )}
     </ClassTimeContainer>
   );

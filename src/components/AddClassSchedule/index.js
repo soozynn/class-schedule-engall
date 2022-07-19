@@ -43,7 +43,7 @@ export default function AddClassSchedule() {
     }
 
     /* 동일한 시간대 & 겹치는 시간대 스케줄 존재할 시 중복 스케줄 있다는 알림 모달 띄우기 */
-
+    // if ()
     dispatch(addSchedule(classSchedule));
     navigate("/");
   };
@@ -64,7 +64,7 @@ export default function AddClassSchedule() {
       </ButtonWrapper>
 
       {showsModal && (
-        <Modal onClick={handleCloseModal}>요일을 선택해주세요.</Modal>
+        <Modal handleClickOk={handleCloseModal}>요일을 선택해주세요.</Modal>
       )}
     </>
   );

@@ -36,8 +36,12 @@ const ModalContainer = styled.div`
   }
 `;
 
-const CloseButton = styled.button`
-  width: 500px;
+const ButtonContainer = styled.div`
+  display: flex;
+`;
+
+const Buttons = styled.button`
+  width: ${(props) => (props.showsModal ? "500px" : "200px")};
   border-radius: 4px;
   border: none;
   color: var(--color-dark-gray);
@@ -53,19 +57,30 @@ const CloseButton = styled.button`
 `;
 
 export default function Modal(props) {
-  const { onClick, children } = props;
+  const { handleClickOk, handleClickCancel, children, showsModal } = props;
 
   return (
     <ModalBackground>
       <ModalContainer>
         <span>{children}</span>
-        <CloseButton onClick={onClick}>확인</CloseButton>
+        <ButtonContainer>
+          {showsModal ? (
+            <>
+              <Buttons onClick={handleClickOk}>확인</Buttons>
+              <Buttons onClick={handleClickCancel}>취소</Buttons>
+            </>
+          ) : (
+            <Buttons onClick={handleClickOk}>확인</Buttons>
+          )}
+        </ButtonContainer>
       </ModalContainer>
     </ModalBackground>
   );
 }
 
 Modal.propTypes = {
-  onClick: PropTypes.func.isRequired,
+  handleClickOk: PropTypes.func.isRequired,
+  handleClickCancel: PropTypes.func,
   children: PropTypes.string.isRequired,
+  showsModal: PropTypes.bool,
 };
