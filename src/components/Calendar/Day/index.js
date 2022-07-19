@@ -6,6 +6,14 @@ import { useSelector } from "react-redux";
 
 import ClassTime from "../../ClassTime/index";
 
+function randomColor() {
+  const color = Math.floor(Math.random() * 16777215).toString(16);
+
+  return `#${color}`;
+}
+
+const daySchedule = {};
+
 const DayContainer = styled.div`
   width: 12vw;
   height: 70vh;
@@ -48,9 +56,14 @@ const ClassWrapper = styled.div`
 export default function Day({ day }) {
   const scheduleList = useSelector((state) => state.schedule.schedule);
 
-  // const sortingSchedule = (a, b) => {
-  //   a.meridiem.localeCompare(b.meridiem);
-  // };
+  const sortingSchedule = (a, b) => {
+    if (a.meridiem > b.meridiem) return 1;
+    if (a.meridiem < b.meridiem) return -1;
+    if (a.hour < b.hour) return -1;
+    if (a.hour > b.hour) return 1;
+    if (a.minute > b.minute) return -1;
+    if (a.minute < b.minute) return 1;
+  };
 
   return (
     <DayContainer>
@@ -62,13 +75,19 @@ export default function Day({ day }) {
         {scheduleList &&
           scheduleList
             .filter((schedule) => schedule.repeat.includes(day))
-            .sort((a, b) =>
-              // a.hour - b.hour &&
-              // a.minute > b.minute &&
-              a.meridiem.localeCompare(b.meridiem)
-            )
+            .sort(sortingSchedule)
             .map((filteredSchedule) => {
-              return <ClassTime key={uuidv4()} schedule={filteredSchedule} />;
+              if (!daySchedule[filteredSchedule.id]) {
+                daySchedule[filteredSchedule.id] = randomColor();
+              }
+
+              return (
+                <ClassTime
+                  key={uuidv4()}
+                  schedule={filteredSchedule}
+                  color={daySchedule.id}
+                />
+              );
             })}
       </ClassWrapper>
     </DayContainer>

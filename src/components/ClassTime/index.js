@@ -15,6 +15,7 @@ const ClassTimeContainer = styled.div`
   margin: 15px;
   padding: 10px 20px;
   background-color: var(--color-light-gray);
+  border: 1px solid ${(props) => props.color};
   border-radius: 4px;
 
   &:hover {
