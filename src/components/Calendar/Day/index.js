@@ -48,7 +48,6 @@ const ClassWrapper = styled.div`
 export default function Day({ day }) {
   const scheduleList = useSelector((state) => state.schedule);
 
-  console.log(scheduleList);
   return (
     <DayContainer>
       <DayWrapper>
@@ -57,8 +56,10 @@ export default function Day({ day }) {
 
       <ClassWrapper>
         {/* 시간 대 순차적으로 렌더링 필요 */}
+        {/* // Am 우선 정렬 후 Pm 순차적으로 */}
         {scheduleList
           .filter((schedule) => schedule.repeat.includes(day))
+          .sort((a, b) => a > b)
           .map((filteredSchedule) => {
             return <ClassTime key={uuidv4()} schedule={filteredSchedule} />;
           })}
