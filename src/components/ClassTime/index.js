@@ -8,6 +8,7 @@ import XButton from "../Button/XButton";
 const ClassTimeContainer = styled.div`
   display: flex;
   flex-direction: column;
+  margin: 5px;
   padding: 10px 20px;
   background-color: var(--color-light-gray);
   border-radius: 4px;
@@ -78,5 +79,11 @@ export default function ClassTime({ schedule }) {
 }
 
 ClassTime.propTypes = {
-  schedule: PropTypes.string.isRequired,
+  schedule: PropTypes.shape({
+    hour: PropTypes.string.isRequired,
+    minute: PropTypes.string.isRequired,
+    meridiem: PropTypes.string.isRequired,
+    repeat: PropTypes.arrayOf(PropTypes.object),
+    id: PropTypes.string,
+  }),
 };
