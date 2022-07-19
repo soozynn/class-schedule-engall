@@ -32,7 +32,7 @@ export default function AddClassSchedule() {
   });
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const scheduleList = useSelector((state) => state.schedule);
+  // const scheduleList = useSelector((state) => state.schedule);
 
   const handleCloseModal = () => {
     setShowsModal(!showsModal);

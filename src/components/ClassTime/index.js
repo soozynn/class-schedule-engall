@@ -43,17 +43,17 @@ export default function ClassTime({ schedule }) {
 
   const extractEndTime = () => {
     let endHour = Number(hour);
-    let endMinute = minute;
+    let endMinute;
     let endMeridiem = meridiem;
 
     if (Number(minute) + 40 > 60) {
-      endMinute = 40 - (60 - minute);
+      endMinute = 40 - (60 - Number(minute));
       endHour += 1;
     } else {
       endMinute = Number(minute) + 40;
     }
 
-    if (Number(hour) === 11 && minute >= 20) {
+    if (Number(hour) === 11 && Number(minute) >= 20) {
       if (meridiem === "Am") {
         endMeridiem = "Pm";
       } else {
@@ -62,6 +62,7 @@ export default function ClassTime({ schedule }) {
     }
 
     endHour = endHour < 10 ? `0${endHour}` : endHour;
+    endMinute = endMinute < 10 ? `0${endMinute}` : endMinute;
 
     return `${endHour}:${endMinute} ${endMeridiem}`;
   };

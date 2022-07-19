@@ -8,7 +8,7 @@ const XButtonWrapper = styled.div`
 
   .font-xmark {
     position: absolute;
-    top: -35px;
+    top: -40px;
     left: 100px;
     background-color: var(--color-dark-gray);
     padding: 2px 4px;
