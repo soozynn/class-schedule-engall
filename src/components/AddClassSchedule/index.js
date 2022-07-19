@@ -23,6 +23,8 @@ const ButtonWrapper = styled.div`
 
 export default function AddClassSchedule() {
   const [showsModal, setShowsModal] = useState(false);
+  const [showsWarning, setShowsWarning] = useState(false);
+  const [duplicateDay, setDuplicateDay] = useState([]);
   const [classSchedule, setClassSchedule] = useState({
     id: uuidv4(),
     hour: "01",
@@ -38,6 +40,10 @@ export default function AddClassSchedule() {
     setShowsModal(!showsModal);
   };
 
+  const handleCloseWarning = () => {
+    setShowsWarning(!showsWarning);
+  };
+
   const handleClickSaveButton = () => {
     if (!classSchedule.repeat.length) {
       return setShowsModal(!showsModal);
@@ -49,34 +55,22 @@ export default function AddClassSchedule() {
         schedule.minute === classSchedule.minute &&
         schedule.meridiem === classSchedule.meridiem
     );
-
     const sameDayList = sameTimeList.map((schedule) => schedule.repeat);
-    console.log(sameDayList);
+    const flatSameDayList = sameDayList.reduce(
+      (acc, cur) => [...acc, ...cur],
+      []
+    );
+    const sameSchedule = flatSameDayList.filter((day) =>
+      classSchedule.repeat.includes(day)
+    );
+    const removedDuplication = [...new Set(sameSchedule)];
 
-    // const intersection = sameTimeList.filter((element) =>
-    //   classSchedule.repeat.includes(element)
-    // );
+    if (sameSchedule.length) {
+      setShowsWarning(!showsWarning);
+      setDuplicateDay(removedDuplication);
+      return;
+    }
 
-    // const sameScheduleObj = {};
-
-    // for (let i = 0; i < sameTimeList.length; i++) {
-    //   console.log(i, sameScheduleObj);
-    //   if (!sameScheduleObj[sameTimeList[i]]) {
-    //     const schedule = sameTimeList[i].repeat;
-    //     sameScheduleObj[schedule] = i;
-    //   }
-    // }
-    // console.log(sameScheduleObj);
-    // for (let j = 0; j < classSchedule.repeat.length; j++) {
-    //   if (sameScheduleObj[classSchedule.repeat[j]]) {
-    //     console.log("중복발생");
-    //     return (
-    //       <Modal handleClickOk={handleCloseModal}>
-    //         {`이번 주 ${sameTimeList[j]}에 동일한 시간대 스케줄이 존재합니다. 해당 요일은 제외해주세요.`}
-    //       </Modal>
-    //     );
-    //   }
-    // }
     dispatch(addSchedule(classSchedule));
     navigate("/");
   };
@@ -98,6 +92,11 @@ export default function AddClassSchedule() {
 
       {showsModal && (
         <Modal handleClickOk={handleCloseModal}>요일을 선택해주세요.</Modal>
+      )}
+      {showsWarning && (
+        <Modal handleClickOk={handleCloseWarning}>
+          {`${duplicateDay} 에 같은 시간대 스케줄이 존재합니다. 해당 요일은 제외하고 선택해주세요.`}
+        </Modal>
       )}
     </>
   );
