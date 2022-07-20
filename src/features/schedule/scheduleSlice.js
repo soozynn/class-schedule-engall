@@ -19,10 +19,7 @@ const scheduleSlice = createSlice({
       );
     },
     deleteOnlySchedule: (state, action) => {
-      // const scheduleId = action.payload;
-      // state.schedule = state.schedule.filter(
-      //   (schedule) => schedule.id !== scheduleId
-      // );
+      // 해당 배열에서 해당 요일만 제거
     },
   },
 });

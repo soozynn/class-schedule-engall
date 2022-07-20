@@ -49,7 +49,7 @@ export default function ClassTime(props) {
     let endMinute;
     let endMeridiem = meridiem;
 
-    if (Number(minute) + 40 > 60) {
+    if (Number(minute) + 40 >= 60) {
       endMinute = 40 - (60 - Number(minute));
       endHour += 1;
     } else {
